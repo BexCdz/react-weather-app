@@ -1,6 +1,8 @@
 
 body, #root {
-  background-color: #111018;
+background-image: url("https://images.pexels.com/photos/35372578/pexels-photo-35372578.jpeg");
+background-repeat: no-repeat;
+  background-size: cover;
   margin: 0;
   min-height: 100vh;
 }
