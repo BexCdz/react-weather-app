@@ -1,2 +1,15 @@
 
 
+.App { 
+max-width: 600px;
+  margin: 0 auto;        
+  padding: 20px;}
+
+.App footer {
+    font-size: 11px;
+    color: white
+;
+opacity: 70%;
+    margin: 10px 0 ;
+
+}
