@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios"
 import "./Weather.css";
 
-export default function Weather (){
+export default function Weather (props){
+
+     const [weatherData, setWeatherData] = useState({ready: false});
+    function handleResponse(response){
+     console.log(response.data);
+      
+        
+     setWeatherData({
+        ready: true, 
+        temperature:Math.round(response.data.temperature.current),
+        humidity: response.data.temperature.humidity,
+        date: "Wednesday 07:00",
+        description:response.data.condition.description, 
+        iconUrl:response.data.condition.icon_url,
+        wind: response.data.wind.speed,
+        city: response.data.city
+     });
+
+       
+   
+  
+    }
+
+    if (weatherData.ready){
+    
    return (
     <div className="Weather">
     <form>
@@ -13,39 +38,47 @@ export default function Weather (){
         </div>
         </div>
     </form>
-    <h1>Barcelona</h1>
+    <h1>{weatherData.city}</h1>
     <ul>
-        <li>Wednesday, 7:00</li>
-        <li>Mostly sunny</li>
+        <li>{weatherData.date}</li>
+        <li className="text-capitalize">{weatherData.description}</li>
     </ul>
     <div className="row mt-3">
         <div className="col-6">
      <div className="d-flex align-items-center">
   <img 
-    src="https://www.gstatic.com/weather/conditions/v1/svg/partly_cloudy_light.svg" 
-    alt="mostly sunny" 
+    src={weatherData.iconUrl} alt={weatherData.description}
   />
   <div className="temperature-container">
-    <span className="temperature">6</span>
+    <span className="temperature">{weatherData.temperature}</span>
     <span className="unit">°C</span>
   </div>
 </div>
     </div>
 <div className="col-6">
     <ul>
+       
         <li>
-          Precipitation: 15%  
+            Humidity: {weatherData.humidity}km/h
         </li>
         <li>
-            Humidity: 50%
-        </li>
-        <li>
-            Wind: 13km/h
+            Wind: {weatherData.wind}km/h
         </li>
     </ul>
 </div>
     </div>
     </div>
 
-   ) 
+   ) ;
+}
+else {
+const apiKey = "6eo2f8064f04d58b91065a4e4bb3c0t3";
+
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=metric`
+    axios.get(apiUrl).then(handleResponse);
+
+    return "Loading..."
+
+}
+
 }
