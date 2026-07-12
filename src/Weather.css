@@ -37,6 +37,8 @@ line-height: 19px;
 list-style: none;
 }
 
+
+
 .Weather canvas {
     margin-top: 7px;
     margin-right: 10px;
@@ -57,6 +59,8 @@ list-style: none;
     line-height:1 ;
     top: -32px;
     margin-left: 0px;
-
 }
 
+.Weather .unit a {
+    text-decoration: none;
+}
