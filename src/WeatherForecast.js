@@ -18,7 +18,7 @@ export default function WeatherForecast(props){
     function handleResponse (response){
         setForecast(response.data);
         setLoaded(true);
-        console.log(response.data)
+     
     }
    
 
@@ -35,6 +35,8 @@ if(loaded){
             <WeatherForecastDay data={dailyForecast}/>
             </div>
             )
+            } else {
+                return null;
             }
             })}
          
